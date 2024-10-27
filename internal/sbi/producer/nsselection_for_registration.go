@@ -128,6 +128,10 @@ func setConfiguredNssai(
 	}
 
 	for _, subscribedSnssai := range param.SliceInfoRequestForRegistration.SubscribedNssai {
+		// oie snssai		
+		if subscribedSnssai.SubscribedSnssai.Sd == "" {
+			subscribedSnssai.SubscribedSnssai.Sd = "010203"
+		}
 		var mappingOfSubscribedSnssai models.Snssai
 		if param.HomePlmnId != nil && !util.CheckStandardSnssai(*subscribedSnssai.SubscribedSnssai) {
 			targetMapping, found := util.FindMappingWithHomeSnssai(*subscribedSnssai.SubscribedSnssai, mappingOfSnssai)

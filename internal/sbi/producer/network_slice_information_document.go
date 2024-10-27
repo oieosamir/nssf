@@ -124,6 +124,15 @@ func NSSelectionGetProcedure(query url.Values) (*models.AuthorizedNetworkSliceIn
 
 	// Parse query parameter
 	param, err := parseQueryParameter(query)
+	// oie snssai
+	if param.SliceInfoRequestForRegistration != nil {
+		for _, subscribedSnssai := range param.SliceInfoRequestForRegistration.SubscribedNssai {
+			if subscribedSnssai.SubscribedSnssai.Sd == "" {
+				subscribedSnssai.SubscribedSnssai.Sd = "010203"
+			}
+		}
+	}
+
 	if err != nil {
 		// status = http.StatusBadRequest
 		problemDetails = &models.ProblemDetails{

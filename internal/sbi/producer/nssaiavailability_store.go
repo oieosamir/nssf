@@ -60,7 +60,8 @@ func NSSAIAvailabilityPatchProcedure(nssaiAvailabilityUpdateInfo plugin.PatchDoc
 			// Since json-patch package does not have idea of optional field of datatype,
 			// provide with null or empty value instead of omitting the field
 			temp := factory.NssfConfig.Configuration.AmfList[amfIdx].SupportedNssaiAvailabilityData
-			const dummyString string = "DUMMY"
+			// oie snssai			
+			const dummyString string = "010203" //"DUMMY"
 			for i := range temp {
 				for j := range temp[i].SupportedSnssaiList {
 					if temp[i].SupportedSnssaiList[j].Sd == "" {
